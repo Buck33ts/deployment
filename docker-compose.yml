@@ -24,7 +24,7 @@ services:
       - NODE_ENV=production
       - PORT=1000
       - MONGODB_URI=mongodb://admin:password123@mongodb:27017/employees_db?authSource=admin
-      - FRONTEND_URL=http://localhost:3002
+      - FRONTEND_URL=http://frontend:3000
     depends_on:
       - mongodb
 
@@ -37,7 +37,7 @@ services:
     ports:
       - "3002:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:1000/api/employees
+      - NEXT_PUBLIC_API_URL=http://localhost:3001/api/employees
     depends_on:
       - backend
 
