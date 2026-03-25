@@ -19,9 +19,12 @@ app.use(cors({
     process.env.FRONTEND_URL || 'http://localhost:3000',
     'http://localhost:3002',
     'http://frontend:3000',
-    'http://192.168.2.141:3002'
+    'http://192.168.2.141:3002',
+    'http://192.168.2.141:3001'  // Allow direct backend access too
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 
