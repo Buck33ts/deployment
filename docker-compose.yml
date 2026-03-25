@@ -1,10 +1,12 @@
+version: "3.9"
+
 services:
   mongodb:
     image: mongo:7
     container_name: employee_mongodb
     restart: unless-stopped
     ports:
-      - "27018:27017"
+      - "27018:27017"  # External port 27018 maps to container's 27017
     volumes:
       - mongodb_data:/data/db
     environment:
@@ -19,7 +21,7 @@ services:
     container_name: employee_backend
     restart: unless-stopped
     ports:
-      - "3001:1000"
+      - "3001:1000"  # Exposes backend for browser access via server IP
     environment:
       - NODE_ENV=production
       - PORT=1000
@@ -32,12 +34,15 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://192.168.2.141:3001/api/employees  # Build-time arg for browser
     container_name: employee_frontend
     restart: unless-stopped
     ports:
-      - "3002:3000"
+      - "3002:3000"  # External port for browser access
     environment:
-      - NEXT_PUBLIC_API_URL=http://backend:1000/api/employees
+      # This is for client-side fetches (browser)
+      - NEXT_PUBLIC_API_URL=http://192.168.2.141:3001/api/employees
     depends_on:
       - backend
 
