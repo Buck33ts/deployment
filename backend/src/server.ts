@@ -18,7 +18,8 @@ app.use(cors({
   origin: [
     process.env.FRONTEND_URL || 'http://localhost:3000',
     'http://localhost:3002',
-    'http://frontend:3000'
+    'http://frontend:3000',
+    'http://192.168.2.141:3002'
   ],
   credentials: true
 }));
