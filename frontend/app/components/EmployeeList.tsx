@@ -29,7 +29,7 @@ const departmentNames: { [key: string]: string } = {
   'Tourism': 'Tourism'
 };
 
-export default function EmployeesListPage({ departmentFilter }: EmployeeListProps) {
+export default function EmployeeList({ departmentFilter }: EmployeeListProps) {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
